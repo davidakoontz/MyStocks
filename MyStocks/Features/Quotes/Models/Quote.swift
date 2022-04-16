@@ -20,6 +20,9 @@ struct Quote: Codable {
         case change = "09. change"
         case changePercent = "10. change percent"
     }
+    
+    static var EmptyQuote = Quote(symbol: "Unknown", open: "0.00", high: "0.00", low: "0.00", price: "0.00", change: "0.00", changePercent: "0.00")
+
 }
 
 extension Quote: Identifiable {
@@ -27,3 +30,4 @@ extension Quote: Identifiable {
         return UUID()
     }
 }
+

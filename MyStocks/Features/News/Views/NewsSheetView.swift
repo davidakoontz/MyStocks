@@ -17,9 +17,8 @@ struct NewsSheetView: View {
     var body: some View {
         BottomSheetView(isOpen: $newsOpen, maxHeight: UIScreen.main.bounds.height * 0.89) {
             ZStack {
-                Color.white
-                Rectangle().fill(Color.black.opacity(0.8))
-                
+                Color.black.opacity(0.8)        // gray background
+
                 VStack(alignment: .leading) {
                     NewsHeaderView()
                     Spacer()

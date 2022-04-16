@@ -3,6 +3,8 @@
 import Foundation
 
 final class NetworkManager<T: Codable> {
+    
+    // Original fetch() using completion
     func fetch(from url: URL, completion: @escaping (Result<T, NetworkError>) -> Void) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
@@ -26,6 +28,7 @@ final class NetworkManager<T: Codable> {
                 completion(.success(json))
             } catch let err {
                 completion(.failure(.decodingError(err: err.localizedDescription)))
+                print("Request URL: \(url)")
                 print(err)
             }
         }.resume()

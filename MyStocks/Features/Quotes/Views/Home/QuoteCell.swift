@@ -2,6 +2,8 @@
 
 import SwiftUI
 
+// Display one Stock with latest Price & delta  change (red/green)
+//
 struct QuoteCell: View {
     var quote: Quote
     
@@ -16,10 +18,10 @@ struct QuoteCell: View {
             Spacer()
             
             VStack {
-                Text(quote.price)
+                Text(quote.price.toCurrency())
                     .bold()
                 
-                Text(quote.change)
+                Text(quote.change.toDeltaCurrencyWithArrow())
                     .padding(.horizontal)
                     .frame(width: 100)
                     .background(RoundedRectangle(cornerRadius: 5).fill(Double(quote.change)! > 0.0 ? Color.green : Color.red), alignment: .trailing)

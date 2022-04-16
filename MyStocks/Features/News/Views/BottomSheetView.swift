@@ -25,7 +25,7 @@ struct BottomSheetView<Content: View>: View {
     }
     
     private var indicator: some View {
-        RoundedRectangle(cornerRadius: Constants.radius)
+        RoundedRectangle(cornerRadius: Constants.radius)        // top drag bar indicator w/ clickable action
             .fill(Color.white.opacity(0.2))
             .frame(width: Constants.indicatorWidth, height: Constants.indicatorHeight)
             .onTapGesture {

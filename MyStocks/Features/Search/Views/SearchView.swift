@@ -2,20 +2,33 @@
 
 import SwiftUI
 
+// Stock Symbol search  sheet -  uses Play button to execute
 struct SearchView: View {
     
+    @Environment(\.dismiss) private var dismiss     // iOS 15
     @State private var searchTerm: String = ""
     
     @ObservedObject var searchManager = SearchManager()
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.8)
+            Color.black.opacity(0.8)        // gray background
+            VStack {                        //  top  drag bar indicator
+                Capsule()
+                    .fill(Color.gray)
+                    .frame(width: 50, height: 4)
+                    .padding(10)
+                Spacer()
+            }
+            .edgesIgnoringSafeArea(.top)
             VStack {
+               
                 HStack {
                     SearchTextView(searchTerm: $searchTerm)
+                    // Play button to make API call
                     Button(action: {
-                        searchManager.searchStocks(keyword: searchTerm)
+                        print("\nSearch term is: \(searchTerm)")
+                        searchManager.searchStocks(searchTerm: searchTerm)
                     }) {
                         Image(systemName: "arrowtriangle.right.circle.fill")
                             .font(.title)
@@ -25,21 +38,22 @@ struct SearchView: View {
                 Spacer()
                 
                 ScrollView {
-                    ForEach(searchManager.searches) { item in
+                    // matches is a Published property - a list of BestMatches
+                    ForEach(searchManager.matches) { match in
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(item.symbol)
+                                Text(match.symbol)
                                     .font(.title)
                                     .bold()
                                 
-                                Text(item.type)
+                                Text(match.type)
                                     .font(.body)
                             }
                             Spacer()
-                            Text(item.name)
+                            Text(match.name)
                             Spacer()
                             Button(action: {
-                                UserDefaultsManager.shared.set(symbol: item.symbol)
+                                UserDefaultsManager.shared.set(match: match)      // was item.symbol a  String
                             }) {
                                 Image(systemName: "plus.circle.fill")
                                     .font(.title)

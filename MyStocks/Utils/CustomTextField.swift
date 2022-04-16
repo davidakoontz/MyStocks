@@ -15,6 +15,7 @@ struct CustomTextField: View {
         ZStack(alignment: .leading) {
             if text.isEmpty { placeholder }
             TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
+                .modifier(TextFieldClearButton(text: $text))
         }
     }
 }

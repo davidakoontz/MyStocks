@@ -31,8 +31,15 @@ struct API {
     }
 }
 
+//API key:   2VYP6T8EKZ86PDB7  for davidakoontz@gmail.com
+//API  key:  DK7TE9W6L2MSO3VV  for  cards.inspireme@gmail.com
+//API key:  PXSKJ57OA0E4RNUS   for  inspireme.cards2day@gmail.com
+
+
 extension API {
     static var key: String {
-        return ""
+        //return "BAD_APIKEY"         //  "BAD_APIKEY" worked just  fine for symbolSearch
+        let keys  = ["41UY1WI73RS730QQ", "PXSKJ57OA0E4RNUS", "DK7TE9W6L2MSO3VV", "2VYP6T8EKZ86PDB7"]
+        return keys.randomElement()!      // AlphaVantage key for david@koontz.name
     }
 }

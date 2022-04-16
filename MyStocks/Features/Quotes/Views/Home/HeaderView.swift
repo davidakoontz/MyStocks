@@ -10,7 +10,8 @@ struct HeaderView: View {
         return formatter
     }()
     
-    @Binding var stocks: [String]
+//    @Binding var stocks: [String]
+    @Binding var stocks: [Stock]
     
     @State private var showSearch = false
     
@@ -35,7 +36,7 @@ struct HeaderView: View {
                     .font(.title)
                     .foregroundColor(.white)
             }.sheet(isPresented: $showSearch, onDismiss: {
-                self.stocks = UserDefaultsManager.shared.savedSymbols
+                self.stocks = UserDefaultsManager.shared.savedStocks       // was a [String]
             }, content: {
                 SearchView()
             })
@@ -45,6 +46,6 @@ struct HeaderView: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView(stocks: .constant(["AAPL", "GOOG"]))
+        HeaderView(stocks: .constant([Stock.AAPL, Stock.GOOG]))
     }
 }
