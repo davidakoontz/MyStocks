@@ -7,7 +7,7 @@ struct NewsListView: View {
     
     @ObservedObject var newsManager: NewsDownloadManager
     @State private var showOnSafari = false
-    @State private var selectedArticle: News?
+    @State private var selectedArticle: Article?
     
     var body: some View {
         VStack {
@@ -51,7 +51,7 @@ struct NewsListView: View {
         }
     }
     
-    private func loadNews(for article: News) -> some View {
+    private func loadNews(for article: Article) -> some View {
         return SafariView(url: URL(string: article.url.replacingOccurrences(of: "http://", with: "https://"))!)
     }
 }

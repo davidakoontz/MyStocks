@@ -3,7 +3,7 @@
 import Foundation
 
 final class NewsDownloadManager: ObservableObject {
-    @Published var newsArticles = [News]()
+    @Published var newsArticles = [Article]()
 
     private let newsUrlString = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=\(NewsAPI.key)"
 
